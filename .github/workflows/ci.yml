@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - stable
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  formula:
+    runs-on: macos-14
+    timeout-minutes: 30
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: 1
+      HOMEBREW_NO_INSTALL_CLEANUP: 1
+
+    steps:
+      - name: Check out tap
+        uses: actions/checkout@v5
+
+      - name: Tap local repository
+        run: brew tap yunusemreyakisan/tap "$GITHUB_WORKSPACE"
+
+      - name: Audit formula
+        run: brew audit --strict yunusemreyakisan/tap/garbageman
+
+      - name: Install formula
+        run: brew install yunusemreyakisan/tap/garbageman
+
+      - name: Test formula
+        run: brew test yunusemreyakisan/tap/garbageman
