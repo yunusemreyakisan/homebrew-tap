@@ -13,6 +13,6 @@ class Garbageman < Formula
   end
 
   test do
-    system "#{bin}/garbageman", "--summary"
+    system "#{bin}/garbageman", "--json"
   end
 end
