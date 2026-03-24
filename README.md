@@ -17,5 +17,6 @@ brew install yunusemreyakisan/tap/garbageman
 
 ## Maintenance
 
-- `Formula/garbageman.rb` is updated by the release workflow in `yunusemreyakisan/garbageman`.
+- `Formula/garbageman.rb` follows the latest published binary release from `yunusemreyakisan/garbageman`.
+- Homebrew installs are binary-only; the tap does not build `garbageman` from source.
 - Pushes and pull requests run formula validation on GitHub Actions.
